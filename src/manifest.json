@@ -1,0 +1,92 @@
+// {
+//   "manifest_version": 3,
+//   "name": "SaveContentToNotion",
+//   "version": "1.0",
+//   "icons": {
+//     "16": "images/globalGoogle16.png",
+//     "48": "images/globalGoogle48.png",
+//     "128": "images/globalGoogle128.png"
+//   },
+//   "background": {
+//     "service_worker": "js/background.js"
+//   },
+//   "action": {
+//     "default_popup": "popup/popup.html"
+//   },
+//   "permissions": [
+//     "storage","contextMenus","activeTab","tabs"
+//   ],
+//   "content_scripts": [
+//     {
+//       "js": ["js/content.js"],
+//       "matches": [
+//         "http://*/*",
+//         "https://*/*"
+//       ],
+//       "run_at": "document_start"
+//     }
+//   ],
+//   "options_page": "option/options.html",
+//   "web_accessible_resources": [
+//     {
+//       "resources": [
+//         "images/C2N.png"
+//       ],
+//       "matches":["<all_urls>"],
+//       "description": "Images for SaveContentToNotion"
+//     }
+//   ]
+// }
+
+
+{
+  "name": "插件名称",
+  "version": "1.0",
+  "description": "插件描述",
+  "homepage_url": "插件主页",
+  "manifest_version": 3,
+  "icons": {
+      "16": "assets/logo_16.png",
+      "48": "assets/logo_48.png",
+      "64": "assets/logo_64.png",
+      "128": "assets/logo_128.png"
+  },
+  "background": {
+      "service_worker": "js/background.js"
+  },
+  "action": {
+      "default_icon": "assets/logo_128.png",
+      "default_popup": "popup.html"
+  },
+  "content_scripts": [
+      {
+          "matches": [
+              "http://*/*",
+              "https://*/*"
+          ],
+          "js": [
+              "js/content.js"
+          ],
+          "run_at": "document_end"
+      }
+  ],
+  "web_accessible_resources": [
+      {
+          "resources": [
+              "/assets/*"
+          ],
+          "matches": [
+              "http://*/*",
+              "https://*/*"
+          ]
+      }
+  ],
+  "permissions": [
+      "notifications",
+      "contextMenus",
+      "webRequest",
+      "storage",
+      "tabs",
+      "activeTab"
+  ]
+}

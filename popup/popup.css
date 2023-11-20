@@ -1,0 +1,85 @@
+/* popup.css */
+body{
+  background-color: white;
+  font-family: arial,sans-serif;
+  font-size: 10px;
+  width: 200px;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+/* header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+} */
+#highlight-list{
+  overflow-y: scroll;
+  height: 218px; 
+}
+#highlight-list-div {
+  font-size: 19px;
+}
+
+.highlight-item {
+ 
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.highlight-text {
+  margin-right: 10px;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.operation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 8px
+}
+.operation > button {
+  margin: 0 5px;
+}
+
+
+/* 设置按钮样式 */
+.save2notionbtn {
+  height: 30px;
+  display: flex;
+  background-color: #4CAF50; /* 按钮背景颜色 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.save2notionbtn:hover {
+  background-color: #45a049;
+}
+
+.clearAllbtn {
+  height: 30px;
+  display: flex;
+  background-color: #4CAF50; /* 按钮背景颜色 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
