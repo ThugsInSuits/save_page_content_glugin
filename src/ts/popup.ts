@@ -1,4 +1,4 @@
-const { Client } = require("@notionhq/client")
+import { Client } from '@notionhq/client';
 
 function formateDate() {
   const currentDate = new Date();
@@ -18,7 +18,7 @@ async function save2notion() {
     let selectedArr = selectedResult ? JSON.parse(selectedResult.selectedText) : [];
 
     // Initialize Notion client
-    const notion = new Client({ auth: tokenData });
+    const notion = new Client({ auth: tokenData.nToken });
 
     // Create a promise for each page creation operation
     const creationPromises = selectedArr.map((item: { text: string, url: string }) => {
@@ -37,7 +37,7 @@ async function save2notion() {
       };
 
       return notion.pages.create({
-        parent: { database_id: databaseIDData },
+        parent: { database_id: databaseIDData.databaseID },
         properties
       });
     });
@@ -72,10 +72,19 @@ save2notionbtn.addEventListener("click", function () {
   save2notion();
 });
 
-const clearAll = document.getElementById("clearAll");
-clearAll.addEventListener("click", function () {
-  chrome.storage.local.clear();
-  alert("清空成功");
+const clearAllBtn = document.getElementById("clearAllBtn");
+clearAllBtn.addEventListener("click", function () {
+  // 只删除 selectedText
+  chrome.storage.local.remove('selectedText', function () {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { action: "clearHighlights" });
+    });
+    // 清除页面上的列表内容
+    const listElement = document.getElementById('highlight-list');
+    if (listElement) {
+      listElement.innerHTML = '';
+    }
+  });
 });
 
 
@@ -88,26 +97,26 @@ document.addEventListener('DOMContentLoaded', function () {
     if (data.selectedText) {
       const listArr = JSON.parse(data.selectedText);
       console.log("data.selectedText" + data.selectedText);
-      listArr.forEach(function (highlight: { text: string }, index: number) {
+      listArr.forEach(function (highlight: { text: string, id: string}, index: number) {
         const itemElement = document.createElement('div');
         itemElement.classList.add('highlight-item');
 
         const textElement = document.createElement('span');
         textElement.classList.add('highlight-text');
-        textElement.textContent = highlight.text.substring(0, 10) + '...';
+        textElement.textContent = highlight.text.substring(0, 15) + '...';
         itemElement.appendChild(textElement);
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         deleteButton.classList.add('delete-button');
         deleteButton.onclick = function () {
-          // 发送消息到content script来删除高亮
+          // 发送消息到 content script 来删除特定ID的高亮
           chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { action: "deleteHighlight", index: index });
+            chrome.tabs.sendMessage(tabs[0].id, { action: "deleteHighlight", highlightId: highlight.id });
           });
-          // 从存储中删除
-          data.selectedText.splice(index, 1);
-          chrome.storage.local.set({ 'selectedText': data.selectedText });
+          // 从存储中删除特定ID的高亮
+          listArr.splice(index, 1);
+          chrome.storage.local.set({ 'selectedText': JSON.stringify(listArr) });
           // 从DOM中删除
           itemElement.remove();
         };

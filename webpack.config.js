@@ -5,16 +5,20 @@ const TerserPlugin = require("terser-webpack-plugin");
 // 用于复制不参与编译的文件
 const copyMap = [
   {
-    from: path.resolve("src/manifest.json"),
-    to: `${path.resolve("dist")}/manifest.json`,
+    from: path.resolve("./src/manifest.json"),
+    to: path.resolve("./dist/manifest.json"),
   },
   {
-    from: path.resolve("src/assets"),
-    to: path.resolve("dist/assets"),
+    from: path.resolve("./src/assests"),
+    to: path.resolve("./dist/assests"),
   },
   {
-    from: path.resolve("src/html"),
-    to: path.resolve("dist/"),
+    from: path.resolve("./src/html"),
+    to: path.resolve("./dist/html"),
+  },
+  {
+    from: path.resolve("./src/css"),
+    to: path.resolve("./dist/css"),
   },
 ];
 //webpack的所有配置信息
@@ -28,11 +32,12 @@ module.exports = {
     background: "./src/ts/background.ts",
     popup: "./src/ts/popup.ts",
     content: "./src/ts/content.ts",
+    option: "./src/ts/option.ts", 
   },
   devtool: "inline-source-map",
 
   devServer: {
-    contentBase: "./dist",  // 开发阶段服务器的根目录
+    contentBase: "dist",  // 开发阶段服务器的根目录
   },
   //指定打包文件所在目录
   output: {
@@ -55,6 +60,7 @@ module.exports = {
       },
     ],
   },
+  mode: 'development',
 
   plugins: [new CleanWebpackPlugin(), new CopyWebpack({ patterns: copyMap })],
 };

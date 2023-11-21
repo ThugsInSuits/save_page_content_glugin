@@ -5,7 +5,8 @@
     "allowJs": true,
     "noImplicitAny": true,
     "typeRoots": ["./node_modules/@types"],
-    "outDir": "./src/dist"
+    "outDir": "./dist",
+    "moduleResolution": "node",
   },
   "buildOptions": {},
   "include": ["./src/ts/*.ts"],
