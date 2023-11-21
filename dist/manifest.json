@@ -1,6 +1,6 @@
 {
   "name": "save2notion",
-  "version": "1.0",
+  "version": "0.0.0.1",
   "description": "You can save content of your choice to Notion.",
   "manifest_version": 3,
   "icons": {
@@ -39,9 +39,6 @@
       }
   ],
   "permissions": [
-      "notifications",
-      "contextMenus",
-      "webRequest",
       "storage",
       "tabs",
       "activeTab"
