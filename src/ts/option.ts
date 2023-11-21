@@ -6,8 +6,8 @@ checkPlaceHolder();
 save.addEventListener("click", () => {
     save.style.backgroundColor = "#3264B7";
     save.setAttribute("disabled", "disabled");
-    var nToken = document.getElementById("nToken").value;
-    var pageID = document.getElementById("pageID").value;
+    var nToken = (document.getElementById("nToken") as HTMLInputElement).value;
+    var pageID = (document.getElementById("pageID") as HTMLInputElement).value;
     createDatabase(nToken, pageID);
 })
 

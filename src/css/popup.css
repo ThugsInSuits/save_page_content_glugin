@@ -1,0 +1,67 @@
+/* popup.css */
+body {
+  background-color: white;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  width: 200px; /* 弹出窗口的宽度 */
+  height: 300px; /* 弹出窗口的高度 */
+  margin: 0; /* 移除默认边距 */
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center; /* 标题居中 */
+}
+
+main {
+  flex-grow: 1; /* 使主内容占据剩余空间 */
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  justify-content: space-between; /* 分隔内容和按钮 */
+}
+
+#highlight-list {
+  overflow-y: auto; /* 开启垂直滚动 */
+  height: 220px; /* 列表的最大高度 */
+}
+
+#highlight-list-div {
+  font-size: 19px;
+  padding: 5px; /* 列表项的内边距 */
+  border-bottom: 1px solid #ccc; /* 列表项之间的边框 */
+}
+
+.save2notion {
+  margin-top: auto; /* 将按钮推到底部 */
+}
+
+.save2notionbtn {
+  width: 90%; /* 按钮宽度相对于容器宽度 */
+  height: 30px;
+  margin: 10px auto; /* 水平居中，留出间隙 */
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save2notionbtn:hover {
+  background-color: #45a049;
+}
+
+.clearAllbtn {
+  width: 90%; /* 按钮宽度相对于容器宽度 */
+  height: 30px;
+  margin: 10px auto; /* 水平居中，留出间隙 */
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clearAllbtn:hover {
+  background-color: #da190b;
+}
